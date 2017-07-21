@@ -1,4 +1,4 @@
-# Face recognition system
+# Similarity with the celebrity
 
 ## Technologies
 
@@ -10,7 +10,7 @@
 ## Installation
 
 ```
-git clone https://github.com/QuantuMobileSoftware/face_recognition_system.git 
-cd face_recognition_system
+git clone https://github.com/QuantuMobileSoftware/similarity_with_the_celebrity.git
+cd similarity_with_the_celebrity
 docker-compose up
 ```
