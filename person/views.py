@@ -41,8 +41,7 @@ class FaceListCreateAPIView(ListCreateAPIView):
             else:
                 face = dict()
                 face['id'] = col.person.id
-                face['first_name'] = col.person.first_name
-                face['last_name'] = col.person.last_name
+                face['name'] = col.person.name
                 face['encodings'] = [np.fromstring(col.encoding, dtype=float, sep=',')]
                 existing_person_id.append(col.person.id)
                 all_face.append(face)

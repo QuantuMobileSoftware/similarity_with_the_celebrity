@@ -64,8 +64,7 @@ class UploadPhoto(APIView):
         sum_of_all_keys = sum(result.keys())
         for i in result.keys():
             person = dict()
-            person['first_name'] = result[i]['first_name']
-            person['last_name'] = result[i]['last_name']
+            person['name'] = result[i]['name']
             score = round((1 - 1 / (1+math.exp(-4*(i-0.6)))) * 100, 2)
             if score > 91.00:
                 score = 100.00

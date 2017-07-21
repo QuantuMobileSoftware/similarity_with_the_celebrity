@@ -147,7 +147,7 @@ $(window.document).ready(function () {
         var row = table.insertRow(i);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
-        cell1.innerHTML = data.persons[i].first_name+" "+data.persons[i].last_name;;
+        cell1.innerHTML = data.persons[i].name;
         cell2.innerHTML = data.persons[i].score;
       }
     }

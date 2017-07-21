@@ -10,10 +10,10 @@ class PersonAdmin(admin.ModelAdmin):
     Person admin
     """
     fieldsets = [
-        ('General information', {'fields': ['first_name', 'last_name']}),
+        ('General information', {'fields': ['name']}),
     ]
-    list_display = ('first_name', 'last_name',)
-    list_filter = ['first_name', 'last_name']
+    list_display = ('name',)
+    list_filter = ['name']
 
 
 class FaceAdmin(admin.ModelAdmin):

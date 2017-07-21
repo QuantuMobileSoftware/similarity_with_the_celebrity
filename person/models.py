@@ -10,15 +10,14 @@ class Person(models.Model):
     """
     Person model
     """
-    first_name = models.CharField('First name', max_length=55)
-    last_name = models.CharField('Last name', max_length=55)
+    name = models.CharField('Name', max_length=55)
 
     def __unicode__(self):
         """
-        Person name and surname
-        :return: person full name
+        Person name
+        :return: person name
         """
-        return '{} {}'.format(self.first_name, self.last_name)
+        return self.name
 
 
 class Face(models.Model):
