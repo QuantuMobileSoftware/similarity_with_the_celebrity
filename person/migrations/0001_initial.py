@@ -15,22 +15,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Face',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('encoding', models.TextField(verbose_name='Encoding')),
-            ],
-        ),
-        migrations.CreateModel(
             name='Person',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=55, verbose_name='Name')),
+                ('image_link', models.CharField(max_length=255, verbose_name='Image link')),
+                ('face_encoding', models.TextField(verbose_name='Face encoding')),
             ],
-        ),
-        migrations.AddField(
-            model_name='face',
-            name='person',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='person.Person', verbose_name='Person'),
         ),
     ]

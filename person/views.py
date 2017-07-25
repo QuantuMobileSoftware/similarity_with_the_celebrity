@@ -13,8 +13,7 @@ from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView
 
 from face_recognition_part import get_face_encodings
-from person.models import Person, Face
-
+from person.models import Person
 
 class FaceListCreateAPIView(ListCreateAPIView):
     """
@@ -25,24 +24,17 @@ class FaceListCreateAPIView(ListCreateAPIView):
         """
         Get all the faces from the database.
         :return: List of the form:
-        [{'id': id, 'first_name': first name, 'last_name': last name,
-        'face_encoding': [list of face encoding]}, ...]
+        [{'id': id, 'name': name, 'image_link': image link,
+        'face_encoding': [face encoding]}, ...]
         """
-        queryset = Face.objects.select_related('person').all()
+        queryset = Person.objects.all()
 
         all_face = list()
-        existing_person_id = []
-
-        for col in queryset:
-            if col.person.id in existing_person_id:
-                for face in all_face:
-                    if face['id'] == col.person.id:
-                        face['encodings'].append(np.fromstring(col.encoding, dtype=float, sep=','))
-            else:
-                face = dict()
-                face['id'] = col.person.id
-                face['name'] = col.person.name
-                face['encodings'] = [np.fromstring(col.encoding, dtype=float, sep=',')]
-                existing_person_id.append(col.person.id)
-                all_face.append(face)
+        for person in queryset:
+            face = dict()
+            face['id'] = person.id
+            face['name'] = person.name
+            face['image_link'] = person.image_link
+            face['face_encoding'] = [np.fromstring(person.face_encoding, dtype=float, sep=',')]
+            all_face.append(face)
         return all_face

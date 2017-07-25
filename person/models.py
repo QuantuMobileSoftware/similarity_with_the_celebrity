@@ -11,6 +11,8 @@ class Person(models.Model):
     Person model
     """
     name = models.CharField('Name', max_length=55)
+    image_link = models.CharField('Image link', max_length=255)
+    face_encoding = models.TextField('Face encoding')
 
     def __unicode__(self):
         """
@@ -18,11 +20,3 @@ class Person(models.Model):
         :return: person name
         """
         return self.name
-
-
-class Face(models.Model):
-    """
-    Face model
-    """
-    person = models.ForeignKey(Person, verbose_name='Person')
-    encoding = models.TextField('Encoding')

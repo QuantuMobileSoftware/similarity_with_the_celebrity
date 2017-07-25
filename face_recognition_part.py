@@ -21,7 +21,7 @@ def compare_faces(list_of_face_encodings, unknown_face_encodings):
     for element in list_of_face_encodings:
         # calculate distance from current encodings to unknown encodings
         current_distance = face_recognition.api.face_distance(
-            element["encodings"], unknown_face_encodings)
+            element['face_encoding'], unknown_face_encodings)
         min_dist = current_distance.min()
         # add to our list of top matches faces
         if len(result_list_of_faces) < 4:
