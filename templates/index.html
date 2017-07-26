@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<div class="w3-content" style="margin-left:10%; margin-right:10%">
+<div class="w3-content" style="margin-left:15%; margin-right:15%">
   <div class="w3-container w3-black">
     <h2 class="w3-opacity">Similarity with the celebrity</h2>
   </div>
@@ -40,22 +40,80 @@
     </div>
   </div>
 
-  <div class="w3-panel">
-    <div class="w3-row w3-border w3-light-gray">
-      <div class="w3-col w3-container" style="width:42%"><p>Image</p></div>
-      <div class="w3-col w3-container" style="width:23%"><p>The celebrity name</p></div>
-      <div class="w3-col w3-container" style="width:35%"><p>Score in percent</p></div>
-    </div>
-    <div class="w3-row w3-border">
-      <div class="w3-col w3-container" style="width:40%">
-        <img id="outImage" style="width:90%" border="0" src="">
+  <div id="loadImage" class="w3-panel">
+    <div class="w3-row">
+      <div class="w3-half w3-container w3-center">
+        <div class="w3-coll w3-center" style="margin-left:5%; margin-right:10%">
+          <h3 class="w3-center">Your photo</h3>
+          <div class="w3-coll w3-center" style="margin-left:10%; margin-right:5%">
+            <img id="outImage" class="w3-padding" style="width:80%" border="0" src="">
+          </div>
+        </div>
       </div>
-      <div class="w3-rest w3-container w3-center">
-        <div id="message" class="w3-panel w3-margin w3-padding-16 w3-round w3-red w3-large"></div>
-        <table id="table" class="w3-table w3-bordered w3-center"></table>
+
+      <div class="w3-half w3-container w3-center">
+        <div id="message" class="w3-panel w3-padding-16 w3-round w3-red w3-large" style="margin-top: 70px"></div>
+
+        <div id="result" class="w3-coll w3-center" style="margin-left:5%; margin-right:10%">
+
+          <h3 id="name1" class="mySlidesName w3-center"></h3>
+          <h3 id="name2" class="mySlidesName w3-center"></h3>
+          <h3 id="name3" class="mySlidesName w3-center"></h3>
+
+          <div class="w3-content w3-panel w3-display-container">
+            <img id="photo1" class="mySlidesPhoto w3-display-topmiddle" src="" style="height:250px">
+            <img id="photo2" class="mySlidesPhoto w3-display-topmiddle" src="" style="height:250px">
+            <img id="photo3" class="mySlidesPhoto w3-display-topmiddle" src="" style="height:250px">
+
+            <div class="w3-center" style="margin-top: 270px">
+              <div class="w3-section">
+                <button class="w3-button w3-light-grey" onclick="plusDivs(-1)">❮ Prev</button>
+                <button class="w3-button w3-light-grey" onclick="plusDivs(1)">Next ❯</button>
+              </div>
+              <button class="w3-button demo" onclick="currentDiv(1)">1</button>
+              <button class="w3-button demo" onclick="currentDiv(2)">2</button>
+              <button class="w3-button demo" onclick="currentDiv(3)">3</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var names = document.getElementsByClassName("mySlidesName");
+  var photos = document.getElementsByClassName("mySlidesPhoto");
+  var dots = document.getElementsByClassName("demo");
+  if (n > photos.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = photos.length}
+  for (i = 0; i < photos.length; i++) {
+     photos[i].style.display = "none";
+     names[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  photos[slideIndex-1].style.display = "block";
+  names[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-white";
+}
+</script>
 </body>
 </html>

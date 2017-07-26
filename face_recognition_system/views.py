@@ -60,15 +60,22 @@ class UploadPhoto(APIView):
             data['message'] = 'You are unique and unrepeatable. You do not look like any of the celebrities!'
             return Response(json.dumps(data), status=status.HTTP_200_OK)
         data['status'] = 'OK'
+
         persons = []
         sum_of_all_keys = sum(result.keys())
         for i in result.keys():
             person = dict()
             person['name'] = result[i]['name']
-            score = round((1 - 1 / (1+math.exp(-4*(i-0.6)))) * 100, 2)
+            person['image_link'] = result[i]['image_link']
+            score = round((1 - 1 / (1 + math.exp(-4 * (i - 0.6)))) * 100, 2)
             if score > 91.00:
                 score = 100.00
             person['score'] = score
             persons.append(person)
         data['persons'] = persons
+
+        # person = dict()
+        # person['name'] = result['name']
+        # person['photo'] = result['image_link']
+        # data['person'] = person
         return Response(json.dumps(data), status=status.HTTP_200_OK)

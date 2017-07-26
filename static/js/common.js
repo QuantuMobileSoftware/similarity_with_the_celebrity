@@ -4,6 +4,9 @@ $(window.document).ready(function () {
 
   document.getElementById('canvas').style.display = 'none';
   document.getElementById('message').style.display = 'none';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('outImage').style.display = 'none';
+  document.getElementById('loadImage').style.display = 'none';
 
   $('#uploadbtn').on('change', upload_file);
   $('#drop-files').on('drop', upload_file);
@@ -93,6 +96,8 @@ $(window.document).ready(function () {
       if (FileReader && files && files.length) {
         var fr = new FileReader();
         fr.onload = function () {
+          document.getElementById('loadImage').style.display = 'block';
+          document.getElementById('outImage').style.display = 'block';
           document.getElementById('outImage').src = fr.result;
         };
         fr.readAsDataURL(file);
@@ -116,6 +121,8 @@ $(window.document).ready(function () {
     context.drawImage(video, 0, 0, 640, 480);
 
     var img = canvas.toDataURL("image/png");
+    document.getElementById('loadImage').style.display = 'block';
+    document.getElementById('outImage').style.display = 'block';
     document.getElementById("outImage").src = img;
     var data = new FormData();
     data.append("data", img);
@@ -125,12 +132,8 @@ $(window.document).ready(function () {
 
   function uploadsuccess(data, status) {
     var data = JSON.parse(data);
-    var table = document.getElementById("table");
-    var rows = table.getElementsByTagName("tr").length;
     document.getElementById('message').style.display = 'none';
-    for (var j = 0; j < rows; j++) {
-      table.deleteRow(0);
-    }
+    document.getElementById('result').style.display = 'none';
 
     if (data.status == 'BAD_REQUEST'){
       var message = data.message;
@@ -143,13 +146,20 @@ $(window.document).ready(function () {
       $('#message').html(message);
     }
     else if (data.status == 'OK') {
+      document.getElementById('result').style.display = 'block';
+      var names = ["name1", "name2", "name3"];
+      var photos = ["photo1", "photo2", "photo3"];
       for (var i = 0; i < data.persons.length; i++) {
-        var row = table.insertRow(i);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        cell1.innerHTML = data.persons[i].name;
-        cell2.innerHTML = data.persons[i].score;
+        document.getElementById(names[i]).innerHTML = data.persons[i].name + ' (' + data.persons[i].score + '%)';
+        document.getElementById(photos[i]).src = data.persons[i].image_link;
       }
+
+//      console.log(data.person);
+//      var name = data.person.name;
+//      var photo = data.person.photo;
+//      document.getElementById('result').style.display = 'block';
+//      document.getElementById("resultImg").src = photo;
+//      $('#resultName').html(name);
     }
   }
 
