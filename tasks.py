@@ -21,7 +21,7 @@ def prepare_db(ctx):
     ctx.run('python manage.py collectstatic --noinput')
 
     # uploading file to db
-    ctx.run('python manage.py import_files_2_db')
+    #ctx.run('python manage.py import_files_2_db')
 
 
 @task
