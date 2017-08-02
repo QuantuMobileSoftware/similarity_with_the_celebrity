@@ -19,8 +19,9 @@
 </head>
 <body>
 <div class="w3-content" style="margin-left:15%; margin-right:15%">
-  <div class="w3-container w3-black">
-    <h2 class="w3-opacity">Similarity with the celebrity</h2>
+  <div class="w3-bar w3-border w3-black w3-xlarge">
+    <span class="w3-bar-item w3-opacity"><b>Similarity with the celebrity</b></span>
+    <a id="how-it-work" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-right">How are we doing it?</a>
   </div>
 
   <div class="w3-panel">
@@ -79,6 +80,23 @@
       </div>
     </div>
   </div>
+</div>
+
+<div id="wrap-how-it-work" class="wrap-up"></div>
+<div id="window-how-it-work" class="window">
+  <div class="w3-row">
+    <div class="w3-col  w3-container w3-right" style="width:50px"><img id="close" class="close" src="../static/img/close.png"></div>
+    <div class="w3-rest w3-container"><h2>How are we doing it?</h2></div>
+  </div>
+  <ol class="w3-ol">
+    <li>Detecting the face</li>
+    <li>Alignment facial landmarks</li>
+    <li>Face transformer</li>
+    <li>Image cropping</li>
+    <li>Feeding to Neural Net</li>
+    <li>Comparing result of DNN with other records</li>
+    <li>Show result</li>
+  </ol>
 </div>
 
 

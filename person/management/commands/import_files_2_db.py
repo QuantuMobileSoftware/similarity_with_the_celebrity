@@ -52,7 +52,7 @@ class Command(BaseCommand):
 
         pool_size = 20
         pool = Pool(pool_size)
-        for num in range(0, 1800):
+        for num in range(0, 1):
             pool.apply_async(process_page, (num,))
         pool.close()
         pool.join()

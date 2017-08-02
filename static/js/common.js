@@ -11,6 +11,9 @@ $(window.document).ready(function () {
   $('#uploadbtn').on('change', upload_file);
   $('#drop-files').on('drop', upload_file);
   $('#snap').on('click', upload_video);
+  $('#how-it-work').on('click', showHowItWork);
+  $('#wrap-how-it-work').on('click', closeHowItWork);
+  $('#close').on('click', closeHowItWork);
 
   $('#drop-files').on('dragover', function (e) {
     e.preventDefault();
@@ -162,5 +165,16 @@ $(window.document).ready(function () {
 //      $('#resultName').html(name);
     }
   }
+
+
+  function showHowItWork(){
+    document.getElementById('window-how-it-work').style.display = 'block';
+    document.getElementById('wrap-how-it-work').style.display = 'block';
+  };
+
+  function closeHowItWork(){
+    document.getElementById('window-how-it-work').style.display = 'none';
+    document.getElementById('wrap-how-it-work').style.display = 'none';
+  };
 
 });
