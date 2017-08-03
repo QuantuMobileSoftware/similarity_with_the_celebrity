@@ -29,7 +29,7 @@ def compare_faces(list_of_face_encodings, unknown_face_encodings):
         else:
             result_list_of_faces.update({min_dist: element})
             result_list_of_faces.popitem()
-    if result_list_of_faces.keys()[0] > 0.555:
+    if result_list_of_faces.keys()[0] > 0.6:
         result_list_of_faces = None
     return result_list_of_faces
 

@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   {% load staticfiles %}
   <meta http-equiv="Cache-control" content="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Similarity with the celebrity</title>
   <script type="text/javascript"
@@ -19,8 +20,9 @@
 </head>
 <body>
 <div class="w3-content" style="margin-left:15%; margin-right:15%">
-  <div class="w3-container w3-black">
-    <h2 class="w3-opacity">Similarity with the celebrity</h2>
+  <div class="w3-bar w3-border w3-black w3-xlarge">
+    <span class="w3-bar-item w3-opacity"><b>Similarity with the celebrity</b></span>
+    <a id="how-it-work" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-right">How are we doing it?</a>
   </div>
 
   <div class="w3-panel">
@@ -52,6 +54,8 @@
       </div>
 
       <div class="w3-half w3-container w3-center">
+        <div  id="wait" class="loader w3-center" style="margin-top: 70px; margin-left:40%"></div>
+
         <div id="message" class="w3-panel w3-padding-16 w3-round w3-red w3-large" style="margin-top: 70px"></div>
 
         <div id="result" class="w3-coll w3-center" style="margin-left:5%; margin-right:10%">
@@ -67,12 +71,12 @@
 
             <div class="w3-center" style="margin-top: 270px">
               <div class="w3-section">
-                <button class="w3-button w3-light-grey" onclick="plusDivs(-1)">❮ Prev</button>
-                <button class="w3-button w3-light-grey" onclick="plusDivs(1)">Next ❯</button>
+                <button id="plus-divs--1" class="w3-button w3-light-grey">❮ Prev</button>
+                <button id="plus-divs-1" class="w3-button w3-light-grey">Next ❯</button>
               </div>
-              <button class="w3-button demo" onclick="currentDiv(1)">1</button>
-              <button class="w3-button demo" onclick="currentDiv(2)">2</button>
-              <button class="w3-button demo" onclick="currentDiv(3)">3</button>
+              <button id="current-div-1" class="w3-button demo">1</button>
+              <button id="current-div-2" class="w3-button demo">2</button>
+              <button id="current-div-3" class="w3-button demo">3</button>
             </div>
           </div>
         </div>
@@ -81,39 +85,22 @@
   </div>
 </div>
 
+<div id="wrap-how-it-work" class="wrap-up"></div>
+<div id="window-how-it-work" class="window">
+  <div class="w3-row">
+    <div class="w3-col  w3-container w3-right" style="width:50px"><img id="close" class="close" src="../static/img/close.png"></div>
+    <div class="w3-rest w3-container"><h2>How are we doing it?</h2></div>
+  </div>
+  <ol class="w3-ol">
+    <li>Detecting the face</li>
+    <li>Alignment facial landmarks</li>
+    <li>Face transformer</li>
+    <li>Image cropping</li>
+    <li>Feeding to Neural Net</li>
+    <li>Comparing result of DNN with other records</li>
+    <li>Show result</li>
+  </ol>
+</div>
 
-
-
-<script>
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var names = document.getElementsByClassName("mySlidesName");
-  var photos = document.getElementsByClassName("mySlidesPhoto");
-  var dots = document.getElementsByClassName("demo");
-  if (n > photos.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = photos.length}
-  for (i = 0; i < photos.length; i++) {
-     photos[i].style.display = "none";
-     names[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-  photos[slideIndex-1].style.display = "block";
-  names[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-white";
-}
-</script>
 </body>
 </html>
