@@ -70,12 +70,12 @@
 
             <div class="w3-center" style="margin-top: 270px">
               <div class="w3-section">
-                <button class="w3-button w3-light-grey" onclick="plusDivs(-1)">❮ Prev</button>
-                <button class="w3-button w3-light-grey" onclick="plusDivs(1)">Next ❯</button>
+                <button id="plus-divs--1" class="w3-button w3-light-grey">❮ Prev</button>
+                <button id="plus-divs-1" class="w3-button w3-light-grey">Next ❯</button>
               </div>
-              <button class="w3-button demo" onclick="currentDiv(1)">1</button>
-              <button class="w3-button demo" onclick="currentDiv(2)">2</button>
-              <button class="w3-button demo" onclick="currentDiv(3)">3</button>
+              <button id="current-div-1" class="w3-button demo">1</button>
+              <button id="current-div-2" class="w3-button demo">2</button>
+              <button id="current-div-3" class="w3-button demo">3</button>
             </div>
           </div>
         </div>
@@ -101,39 +101,5 @@
   </ol>
 </div>
 
-
-
-
-<script>
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var names = document.getElementsByClassName("mySlidesName");
-  var photos = document.getElementsByClassName("mySlidesPhoto");
-  var dots = document.getElementsByClassName("demo");
-  if (n > photos.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = photos.length}
-  for (i = 0; i < photos.length; i++) {
-     photos[i].style.display = "none";
-     names[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-black", "");
-  }
-  photos[slideIndex-1].style.display = "block";
-  names[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-black";
-}
-</script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 var $ = window.jQuery;
+var slideIndex = 1;
 
 $(window.document).ready(function () {
 
@@ -15,6 +16,11 @@ $(window.document).ready(function () {
   $('#how-it-work').on('click', showHowItWork);
   $('#wrap-how-it-work').on('click', closeHowItWork);
   $('#close').on('click', closeHowItWork);
+  $('#plus-divs--1').on('click', () => plusDivs(-1));
+  $('#plus-divs-1').on('click', () => plusDivs(1));
+  $('#current-div-1').on('click', () => currentDiv(1));
+  $('#current-div-2').on('click', () => currentDiv(2));
+  $('#current-div-3').on('click', () => currentDiv(3));
 
   $('#drop-files').on('dragover', function (e) {
     e.preventDefault();
@@ -114,7 +120,6 @@ $(window.document).ready(function () {
         // fallback -- perhaps submit the input to an iframe and temporarily store
         // them on the server until the user's session ends.
       }
-
   }
 
   function upload_video(event) {
@@ -159,6 +164,7 @@ $(window.document).ready(function () {
         document.getElementById(names[i]).innerHTML = data.persons[i].name + ' (' + data.persons[i].score + '%)';
         document.getElementById(photos[i]).src = data.persons[i].image_link;
       }
+      showDivs(slideIndex);
 
 //      console.log(data.person);
 //      var name = data.person.name;
@@ -169,6 +175,33 @@ $(window.document).ready(function () {
     }
   }
 
+  function plusDivs(n) {
+    console.log(n);
+    showDivs(slideIndex += n);
+  }
+
+  function currentDiv(n) {
+    showDivs(slideIndex = n);
+  }
+
+  function showDivs(n) {
+    var i;
+    var names = document.getElementsByClassName("mySlidesName");
+    var photos = document.getElementsByClassName("mySlidesPhoto");
+    var dots = document.getElementsByClassName("demo");
+    if (n > photos.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = photos.length}
+    for (i = 0; i < photos.length; i++) {
+       photos[i].style.display = "none";
+       names[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+       dots[i].className = dots[i].className.replace(" w3-black", "");
+    }
+    photos[slideIndex-1].style.display = "block";
+    names[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " w3-black";
+  }
 
   function showHowItWork(){
     document.getElementById('window-how-it-work').style.display = 'block';
