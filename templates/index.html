@@ -53,7 +53,7 @@
       </div>
 
       <div class="w3-half w3-container w3-center">
-        <div id="message-wait" class="w3-panel w3-padding-16 w3-round w3-xxlarge" style="margin-top: 70px"></div>
+        <div  id="wait" class="loader w3-center" style="margin-top: 70px; margin-left:40%"></div>
 
         <div id="message" class="w3-panel w3-padding-16 w3-round w3-red w3-large" style="margin-top: 70px"></div>
 
@@ -105,6 +105,21 @@
 
 
 <script>
+function spinnerInit() {
+var opts = {
+	lines: 12, // The number of lines to draw
+	length: 7, // The length of each line
+	width: 5, // The line thickness
+	radius: 10, // The radius of the inner circle
+	color: '#000', // #rbg or #rrggbb
+	speed: 1, // Rounds per second
+	trail: 100, // Afterglow percentage
+	shadow: true // Whether to render a shadow
+};
+
+               $('#spinnerContainer').after(new Spinner(opts).spin().el);
+           }
+
 var slideIndex = 1;
 showDivs(slideIndex);
 

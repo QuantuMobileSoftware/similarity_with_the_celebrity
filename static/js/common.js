@@ -3,7 +3,7 @@ var $ = window.jQuery;
 $(window.document).ready(function () {
 
   document.getElementById('canvas').style.display = 'none';
-  document.getElementById('message-wait').style.display = 'none';
+  document.getElementById('wait').style.display = 'none';
   document.getElementById('message').style.display = 'none';
   document.getElementById('result').style.display = 'none';
   document.getElementById('outImage').style.display = 'none';
@@ -51,8 +51,7 @@ $(window.document).ready(function () {
   function upload(data) {
   document.getElementById('message').style.display = 'none';
   document.getElementById('result').style.display = 'none';
-  document.getElementById('message-wait').style.display = 'block';
-  $('#message-wait').html('Please wait, it can take some time.');
+  document.getElementById('wait').style.display = 'block';
     $.ajax({
       url: '/upload/',
       type: 'POST',
@@ -140,7 +139,7 @@ $(window.document).ready(function () {
 
   function uploadsuccess(data, status) {
     var data = JSON.parse(data);
-    document.getElementById('message-wait').style.display = 'none';
+    document.getElementById('wait').style.display = 'none';
 
     if (data.status == 'BAD_REQUEST'){
       var message = data.message;
