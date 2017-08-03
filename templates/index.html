@@ -53,6 +53,8 @@
       </div>
 
       <div class="w3-half w3-container w3-center">
+        <div id="message-wait" class="w3-panel w3-padding-16 w3-round w3-xxlarge" style="margin-top: 70px"></div>
+
         <div id="message" class="w3-panel w3-padding-16 w3-round w3-red w3-large" style="margin-top: 70px"></div>
 
         <div id="result" class="w3-coll w3-center" style="margin-left:5%; margin-right:10%">
@@ -126,11 +128,11 @@ function showDivs(n) {
      names[i].style.display = "none";
   }
   for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-white", "");
+     dots[i].className = dots[i].className.replace(" w3-black", "");
   }
   photos[slideIndex-1].style.display = "block";
   names[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-white";
+  dots[slideIndex-1].className += " w3-black";
 }
 </script>
 </body>
