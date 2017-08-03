@@ -2,7 +2,7 @@ body {
     font-size: 62.5%;
     font-family: Arial, sans-serif;
     padding: 0;
-    margin: 0;
+    margin: 50px;
 }
 
 #drop-files {
@@ -27,15 +27,15 @@ body {
 }
 
 .window {
-    width: 400px;
+    max-width: 400px;
     height: 400px;
     margin: 50px auto;
     display: none;
     background: #fff;
     z-index: 200;
     position: fixed;
-    left: 0;
-    right: 0;
+    left: 20px;
+    right: 20px;
     top: 0;
     bottom: 0;
     padding: 16px;
