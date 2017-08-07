@@ -1,5 +1,7 @@
 var $ = window.jQuery;
 var slideIndex = 1;
+var videoWidth = 640;
+var videoHeight = 480;
 
 $(window.document).ready(function () {
 
@@ -38,6 +40,10 @@ $(window.document).ready(function () {
     navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
       video.src = window.URL.createObjectURL(stream);
       video.play();
+      video.onloadedmetadata = function() {
+      videoWidth = this.videoWidth;
+      videoHeight = this.videoHeight;
+    }
     });
   }
 
@@ -129,8 +135,10 @@ $(window.document).ready(function () {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var video = document.getElementById('video');
+    context.canvas.width  = video.videoWidth;
+    context.canvas.height = video.videoHeight;
 
-    context.drawImage(video, 0, 0, 640, 480);
+    context.drawImage(video, 0, 0, videoWidth, videoHeight);
 
     var img = canvas.toDataURL("image/png");
     document.getElementById('loadImage').style.display = 'block';
