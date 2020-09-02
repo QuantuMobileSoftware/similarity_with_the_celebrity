@@ -1,0 +1,22 @@
+postgres:
+ image: postgres:9.6
+ expose:
+  - 5432
+ environment:
+  - POSTGRES_USER=face_recognition_system
+  - POSTGRES_DB=face_recognition_system
+  - POSTGRES_PASSWORD=eep0Aiph
+web:
+ image: adolgarev/face_recognition:1493883078
+ volumes:
+   - .:/web
+ expose:
+   - 9000
+ links:
+   - postgres:db
+ command: /bin/bash -c "cd /web && pip install -r requirements.txt && exec invoke run_dev"
+ environment:
+  VIRTUAL_HOST: similarity.quantumobile.co
+  VIRTUAL_PORT: 9000
+  LETSENCRYPT_HOST: similarity.quantumobile.co
+  LETSENCRYPT_EMAIL: a.dolgarev@quantumobile.com
