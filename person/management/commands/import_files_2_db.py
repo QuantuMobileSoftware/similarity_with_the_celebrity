@@ -24,18 +24,17 @@ class Command(BaseCommand):
             r = requests.get("http://www.imdb.com/search/name?gender=male,female&ref_=nv_cel_m_3&start="+number_of_page)
             data = r.text
             soup = BeautifulSoup(data, "html.parser")
-            for page_link in soup.find_all("td", class_="image"):
-                url = page_link.find('a').get('href')
+            for lister_item in soup.find_all("div", class_="lister-item"):
+                url = lister_item.find("h3", class_="lister-item-header").find('a').get('href')
                 full_url = "http://www.imdb.com/" + url
-                page = requests.get(full_url)
-                data = page.text
-                soup = BeautifulSoup(data, "html.parser")
-                image_link = soup.find("div", class_="image").find('a').find('img').get('src')
-                name = soup.find("h1", class_="header").find('span').text
+
+                name = lister_item.find("h3", class_="lister-item-header").find('a').text
+
+                image_link = lister_item.find('img').get('src')
                 img = urllib.urlretrieve(image_link)
                 img = face_recognition.api.load_image_file(os.path.join(img[0]))
-
                 face_encoding = get_face_encodings(img)
+
                 if len(face_encoding) == 1:
                     face_encoding = str(face_encoding[0].tolist())[1:-1]
                     with transaction.atomic():
