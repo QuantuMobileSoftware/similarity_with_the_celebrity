@@ -12,6 +12,7 @@ services:
    image: adolgarev/face_recognition:1493883078
    volumes:
      - .:/web
+   tty: true
    ports:
      - "9000:9000"
    expose:
